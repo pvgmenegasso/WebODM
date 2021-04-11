@@ -174,7 +174,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Baseline configuration.
-AUTH_LDAP_SERVER_URI = http://cnptia.embrapa.br
+AUTH_LDAP_SERVER_URI = ldap://cnptia.embrapa.br
 
 # This is the default, but I like to be explicit.
 AUTH_LDAP_ALWAYS_UPDATE_USER = True

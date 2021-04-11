@@ -27,6 +27,7 @@ class UserViewSet(viewsets.ModelViewSet):
         user = UserSerializer(data=data)
         user.is_valid(raise_exception=True)
         user.save()
+        print(user)
         return Response(user.data, status=status.HTTP_201_CREATED)
 
 class GroupSerializer(serializers.ModelSerializer):
