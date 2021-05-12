@@ -286,7 +286,7 @@ rebuild(){
 	run "docker-compose down --remove-orphans"
 	run "rm -fr node_modules/ || sudo rm -fr node_modules/"
 	run "rm -fr nodeodm/external/NodeODM || sudo rm -fr nodeodm/external/NodeODM"
-	run "docker-compose -f docker-compose.yml -f docker-compose.build.yml build --no-cache"
+	run "docker-compose -f docker-compose.yml -f docker-compose.build.yml build --build-arg HTTP_PROXY=http://proxy.cnptia.embrapa.br:3128 --build-arg HTTPS_PROXY=https://proxy.cnptia.embrapa.br:3128"
 	#run "docker images --no-trunc -aqf \"dangling=true\" | xargs docker rmi"
 	echo -e "\033[1mDone!\033[0m You can now start WebODM by running $0 start"
 }

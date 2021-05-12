@@ -42,15 +42,26 @@ if [ "$1" = "--setup-devenv" ] || [ "$2" = "--setup-devenv" ]; then
     git submodule update --init
     
     echo Setup npm dependencies..
+
+    # EMBRAPA Environments modifications:
     echo Setting npm proxy environment
     npm config set proxy http://proxy.cnptia.embrapa.br:3128/
+    # Normal
     npm install
     cd nodeodm/external/NodeODM
     npm install
     cd /webodm
 
+    # EMBRAPA Environments modifications:
+    echo Setup proxy environment
+    export http_proxy=http://proxy.cnptia.embrapa.br:3128/
+    # LDAP requirements
+    echo Install LDAP requirements
+    python -m pip install --upgrade pip --proxy http://proxy.cnptia.embrapa.br:3128/
+    python -m pip install python-ldap --proxy http://proxy.cnptia.embrapa.br:3128/  
+    # Normal
     echo Setup pip requirements...
-    pip install -r requirements.txt
+    pip install -r requirements.txt --proxy http://proxy.cnptia.embrapa.br:3128/
 
     echo Build translations...
     ./translate.sh build safe

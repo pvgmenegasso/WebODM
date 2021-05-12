@@ -13,9 +13,11 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 import os, sys, json
 
 import datetime
-
+import ldap
+from django_auth_ldap.config import LDAPSearch
 import tzlocal
 from django.contrib.messages import constants as messages
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -174,32 +176,22 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Baseline configuration.
-AUTH_LDAP_SERVER_URI = ldap://cnptia.embrapa.br
+AUTH_LDAP_START_TLS = True
+AUTH_LDAP_SERVER_URI = "ldaps://vulcan.cnptia.embrapa.br"
 
 # This is the default, but I like to be explicit.
 AUTH_LDAP_ALWAYS_UPDATE_USER = True
 
-# Use LDAP group membership to calculate group permissions.
-AUTH_LDAP_FIND_GROUP_PERMS = True
-
-# Populate the Django user from the LDAP directory.
-AUTH_LDAP_USER_ATTR_MAP = {
-    'first_name': 'givenName',
-    'last_name': 'sn',
-    'email': 'mail',
-}
-
-AUTH_LDAP_USER_FLAGS_BY_GROUP = {
-    'is_active': 'cn=active,ou=django,ou=groups,dc=example,dc=com',
-    'is_staff': 'cn=staff,ou=django,ou=groups,dc=example,dc=com',
-    'is_superuser': 'cn=superuser,ou=django,ou=groups,dc=example,dc=com',
-}
+LDAP_SEARCH_DN = "dc=embrapa,dc=br"
+AUTH_LDAP_USER = "(uid=%(user)s)"
+AUTH_LDAP_USER_ATTR_MAP = {'first_name': 'givenName', 'last_name': 'sn', 'email': 'mail','organization':'departmentNumber'}
+AUTH_LDAP_USER_SEARCH = LDAPSearch(LDAP_SEARCH_DN,ldap.SCOPE_SUBTREE, AUTH_LDAP_USER)
 
 # Hook guardian
 AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend', # this is default
-    'guardian.backends.ObjectPermissionBackend',
     'django_auth_ldap.backend.LDAPBackend', # Add LDAP authentication
+    'django.contrib.auth.backends.ModelBackend', # this is default
+    'guardian.backends.ObjectPermissionBackend',   
 )
 
 
