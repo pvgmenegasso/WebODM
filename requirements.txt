@@ -40,11 +40,11 @@ PyJWT==1.5.3
 pyodm==1.5.5
 pyparsing==2.1.10
 pytz==2020.1
-python-ldap==3.3.0
+python-ldap
 rcssmin==1.0.6
 redis==3.2.0
 requests-toolbelt==0.9.1
-django-auth-ldap==2.4.0
+django-auth-ldap
 requests==2.21.0
 rfc3987==1.3.7
 rjsmin==1.0.12

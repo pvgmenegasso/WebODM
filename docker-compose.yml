@@ -32,10 +32,6 @@ services:
       - WO_DEBUG
       - WO_BROKER
       - WO_DEV
-      - http_proxy=http://proxy.cnptia.embrapa.br:3128/
-      - https_proxy=https://proxy.cnptia.embrapa.br:3128/
-      - HTTP_PROXY=http://proxy.cnptia.embrapa.br:3128/
-      - HTTPS_PROXY=https://proxy.cnptia.embrapa.br:3128/
     restart: unless-stopped
     oom_score_adj: 0
   broker:
@@ -55,9 +51,5 @@ services:
     environment:
       - WO_BROKER
       - WO_DEBUG
-      - http_proxy=http://proxy.cnptia.embrapa.br:3128/
-      - https_proxy=https://proxy.cnptia.embrapa.br:3128/
-      - HTTP_PROXY=http://proxy.cnptia.embrapa.br:3128/
-      - HTTPS_PROXY=https://proxy.cnptia.embrapa.br:3128/
     restart: unless-stopped
     oom_score_adj: 250
