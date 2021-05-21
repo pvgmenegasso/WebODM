@@ -1,5 +1,6 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 MAINTAINER Piero Toffanin <pt@masseranolabs.com>
+MAINTAINER Pedro Vinícius <pedro.menegasso@colaborador.embrapa.br>
 
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONPATH $PYTHONPATH:/webodm
