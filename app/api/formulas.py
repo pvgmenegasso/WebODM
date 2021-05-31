@@ -7,6 +7,10 @@ from functools import lru_cache
 from django.utils.translation import gettext_lazy as _
 
 algos = {
+    'NDVI-Sentera' : {
+        'expr': '(1.236 * B - 0.188 * R) / (B + (0.044 * R))',
+        'help': _('Normalized Difference Vegetation Index para camera Sentera Single Sensor'),
+    },
     'NDVI': {
         'expr': '(N - R) / (N + R)',
         'help': _('Normalized Difference Vegetation Index shows the amount of green vegetation.')
